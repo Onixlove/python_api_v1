@@ -11,3 +11,5 @@ class Payloads:
     "name": fake.first_name(),
     "nickname": fake.user_name()
     }
+
+print(Payloads().create_user)

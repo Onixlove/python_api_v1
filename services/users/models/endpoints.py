@@ -1,6 +1,6 @@
 import os
 
-HOST = "https://dev-gs.qa-playground.com/api/v1"
+HOST = "https://release-gs.qa-playground.com/api/v1"
 
 class Endpoints:
     

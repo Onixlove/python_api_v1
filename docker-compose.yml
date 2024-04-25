@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+  api-tests:
+    image: api-tests:v1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/usr/workspace
+    command: /bin/sh -c "pytest -sv --alluredir=allure-results"
+    working_dir: /usr/workspace
+    environment:
+      API_TOKEN: "eyJhbGciOiJIUzI1NiIsImtpZCI6IldGZlRBQ0hzYUhvQ3VML1MiLCJ0eXAiOiJKV1QifQ.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzE0NjYxNDEyLCJpYXQiOjE3MTQwNjE0MTIsImlzcyI6Imh0dHBzOi8vbXlrb3RxYm9ja3p2emFjY2N1Ynouc3VwYWJhc2UuY28vYXV0aC92MSIsInN1YiI6ImIyNDA3ZmM2LThmNzYtNDBiZC04M2I4LTMwMmNkYTUzOWFkNSIsImVtYWlsIjoicG9ydDYyQHlhLnJ1IiwicGhvbmUiOiIiLCJhcHBfbWV0YWRhdGEiOnsicHJvdmlkZXIiOiJnaXRodWIiLCJwcm92aWRlcnMiOlsiZ2l0aHViIl19LCJ1c2VyX21ldGFkYXRhIjp7ImF2YXRhcl91cmwiOiJodHRwczovL2F2YXRhcnMuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTY4MTEyMTA1P3Y9NCIsImVtYWlsIjoicG9ydDYyQHlhLnJ1IiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImlzcyI6Imh0dHBzOi8vYXBpLmdpdGh1Yi5jb20iLCJwaG9uZV92ZXJpZmllZCI6ZmFsc2UsInByZWZlcnJlZF91c2VybmFtZSI6Ik9uaXhsb3ZlIiwicHJvdmlkZXJfaWQiOiIxNjgxMTIxMDUiLCJzdWIiOiIxNjgxMTIxMDUiLCJ1c2VyX25hbWUiOiJPbml4bG92ZSJ9LCJyb2xlIjoiYXV0aGVudGljYXRlZCIsImFhbCI6ImFhbDEiLCJhbXIiOlt7Im1ldGhvZCI6Im9hdXRoIiwidGltZXN0YW1wIjoxNzE0MDYxNDEyfV0sInNlc3Npb25faWQiOiIyZjQ1ODUxYi0zNTg4LTQ1OTUtYWIxOC0zZWJkMTY3MGYzNzkiLCJpc19hbm9ueW1vdXMiOmZhbHNlfQ.trLaUnc-ZpgxyiioeVhzj8SmJt_u71iu0ng24bgQUWY"
+
+
+  report:
+    image: api-tests:v1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/usr/workspace
+    command: /bin/sh -c "allure generate allure-results --clean -o allure-report"
+    working_dir: /usr/workspace
