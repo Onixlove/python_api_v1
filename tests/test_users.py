@@ -15,7 +15,7 @@ class TestUsers(BaseTest):
         print("THE_TEST_IS_COMPLETED")
 
     @pytest.mark.crud
-    @allure.title("Get User")
+    @allure.title("Get user")
     def test_get_user(self):
         print("-----START_TEST:GET_USER-----")
         user = self.api_users.create_users()
